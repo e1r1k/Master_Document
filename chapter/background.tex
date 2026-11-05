@@ -2,40 +2,31 @@
 
 \section{Related Work}
 
-Several studies have investigated applying Dynamic Time Warping (DTW)\todo{remove when explained earlier} on spatial domains and 
+Several studies have investigated applying \gls{dtw} on spatial domains and 
 weather data separately \todo{add citations}, and other studies have investigated the decomposition
 of weather forecast error into spatial and temporal components \todo{add citations}. The intersection between these 
 topics, however, is largely unexplored.
 
-Dynamic Time Warping applied to spatial orderings has been used with proven results in recent
+\gls{dtw} applied to spatial orderings has been used with proven results in recent
 litterature on automatic correlation between well-logs for geological analysis\cite{well-log-correlation}. 
-Nilo et al. use the DTW algorithm to correlate features in wells where measurements
+Nilo et al. use the \gls{dtw} algorithm to correlate features in wells where measurements
 are ordered by depth, yielding promising results as an aid in research though still requiring some supervision
-in practical deployments \cite{well-log-correlation}. Le Coz et al. use DTW together with spatial 
-image warping to correct estimates of total rainfall during events such as convective rainstorms in sub-Saharan Africa.
+in practical deployments \cite{well-log-correlation}. Le Coz et al. use \gls{dtw} together with spatial 
+image warping to correct estimates of total rainfall during events such as convective rainstorms in sub-saharan Africa.
 By warping satellite-based estimates to fit measurements from local weather station networks, they note significant 
 improvements over pure satellite-based estimates \cite{gauge-adjustment}. Other notable applications include using DTW
-to compare cloud-top temperature and other satellite-based estimation technique time-series in precipitation estimation. \cite{cloudtops,andes-rainfall} 
+to compare cloud-top temperature and other satellite-measurement time series in precipitation estimation. \cite{cloudtops,andes-rainfall} 
 
 Decomposing forecast errors into spatial and temporal components is generally first accredited to Hoffman et al. in their 
-1995 paper "Distortion Representation of Forecast Errors" \cite{hoffman1995,spatiotemporal-forecast-partition}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1995 article `Distortion Representation of Forecast Errors'. \cite{hoffman1995,spatiotemporal-forecast-partition}
+In short terms, they propose shifting weather forecast samples and scaling values to best fit the ground truth, and designating the amount
+of shift as displacement error, amount of scaling as amplitude error, leaving still unaccounted for error as residual errors.\cite{hoffman1995}
+This has been the basis of most research and models dealing with the topic since.
+Jankov et al. builds on this conceptual framework to create a system that is practically applicable through the Forecast Error Decomposition method, 
+using field alignment to morph a grid-based numerical forecast into the observed verification grid. This naturally breaks errors down into 
+positional (displacement), structural (amplitude) and variance (residual) terms, both dealing with the double penalty problem and 
+improving interpretability through the decomposition itself \cite{spatiotemporal-forecast-partition}. This method is also still limited to after-the-fact evaluation though. I was not able to find any literature on
+predictive models for uncertainty composition in forecasting, or application of the \gls{dtw} algorithm on spatial orderings themselves in weather forecasting context.
 
 
 
@@ -43,4 +34,8 @@ Decomposing forecast errors into spatial and temporal components is generally fi
 
 Clustering is the process of partitioning a set of data objects into groups referred to as clusters, that are similar to each other or dissimilar to objects in other clusters~\cite{datamining}.
 This is an unsupervised machine learning technique used to explore the dataset, for preprocessing or as a subroutine for further study~\cite{kshape}. 
-The two main advantages of clustering is that since it is unsupervised it can easily be applied to real-world datasets that don't need to be curated or processed first, and that it might let us discover groupings that humans would not intuitively think of.
+The two main advantages of clustering is that since it is unsupervised it can easily be applied to real-world datasets that don't need to be labelled first, 
+and that it might let us discover groupings that humans would not intuitively think of. 
+
+\subsubsection{K-Means clustering}
+
